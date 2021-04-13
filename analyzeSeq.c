@@ -43,17 +43,21 @@ int main()
   double mu = (double) N/4;
   double sigma = sqrt(N*3/16); // sqrt(N*p*q)
   double s_hat, z_hat;
-  fp = fopen("data.txt","w");
+  FILE *f1, *f2;
+  f1 = fopen("data1.txt","w");
+  f2 = fopen("data2.txt","w");
   for (int i=0; i<n; i++)
     {
       for (int j=i+1; j<n; j++)
 	{
 	  s_hat = similar(strands[i],strands[j],N);
 	  z_hat = (s_hat-mu)/sigma;
-	  fprintf(fp,"%f\n",s_hat);
+	  fprintf(f1,"%f\n",s_hat);
+	  fprintf(f2,"%f\n",z_hat);
 	}
     }
-  fclose(fp);
+  fclose(f1);
+  fclose(f2);
 
   return 0;
 }
